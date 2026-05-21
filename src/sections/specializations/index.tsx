@@ -121,7 +121,7 @@ export const SpecializationsSection = () => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: section,
-        start: "top top",
+        start: "top 112px",
         end: "+=500%",       // very long — slow, cinematic scroll
         scrub: 3,            // heavy scrub = silky slow
         pin: cardRef.current,
@@ -167,16 +167,16 @@ export const SpecializationsSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative w-[88%] md:w-[85%] max-w-[2000px] mx-auto pt-6 pb-10 md:pt-8"
+      className="relative w-[88%] md:w-[67.5%] max-w-[1800px] mx-auto pt-6 pb-10 md:pt-8"
     >
       {/* ── Sticky card ── */}
       <div
         ref={cardRef}
-        className="w-full rounded-[2.5rem] md:rounded-[3.5rem] overflow-hidden"
+        className="w-full rounded-[2.5rem] md:rounded-[3.5rem] overflow-hidden flex flex-col justify-between"
         style={{
           background: "linear-gradient(145deg,#1E3A8A 0%,#2563EB 42%,#60A5FA 78%,#BFDBFE 100%)",
           boxShadow: "0 40px 100px rgba(30,58,138,0.4), 0 0 0 1px rgba(255,255,255,0.12)",
-          minHeight: "84vh",
+          minHeight: "72vh",
         }}
       >
         {/* Thin progress bar */}
@@ -185,32 +185,29 @@ export const SpecializationsSection = () => {
         </div>
 
         {/* Section label + title */}
-        <div className="text-center px-8 pt-8 pb-4 md:pt-10">
+        <div className="text-center px-6 pt-8 pb-2 md:pt-10">
           <p className="text-white/45 text-[10.5px] uppercase tracking-[0.25em] font-semibold mb-2 font-matter">
             Specializations
           </p>
-          <h2 className="font-season_mix font-[420] text-white text-[1.05rem] md:text-[1.5rem] lg:text-[1.8rem] leading-[1.1] tracking-[-0.015em]">
+          <h2 className="font-season_mix font-[420] text-white text-[1.05rem] md:text-[1.4rem] lg:text-[1.7rem] leading-[1.1] tracking-[-0.015em]">
             The Sacred Geometry of Sovereign AI
           </h2>
         </div>
 
         {/* ── Unified Responsive Container ── */}
-        <div
-          className="flex flex-col md:flex-row items-center w-full px-4 pb-12 gap-8 md:gap-0"
-          style={{ minHeight: "72vh" }}
-        >
+        <div className="flex-1 flex flex-col md:flex-row items-center w-full px-6 pb-12 gap-8 md:gap-0">
           {/* LEFT/TOP — Sri Chakra SVG canvas */}
-          <div className="relative flex-shrink-0 w-full md:w-[52%] flex items-center justify-center pt-4 md:pt-0" style={{ minHeight: "32vh", mdMinHeight: "70vh" }}>
+          <div className="relative w-full md:w-[50%] flex items-center justify-center pt-2 md:pt-0">
             {/* ambient radial glow */}
             <div
               className="absolute rounded-full pointer-events-none"
               style={{ width: "65%", height: "65%", background: "radial-gradient(circle, rgba(255,255,255,0.22) 0%, transparent 70%)" }}
             />
 
-            {/* ── Master SVG — all 5 layers, same viewBox ── */}
+            {/* ── Master SVG ── */}
             <svg
               viewBox="0 0 912 911"
-              className="w-[180px] sm:w-[220px] md:w-[min(460px,90%)] h-auto"
+              className="w-[165px] sm:w-[185px] md:w-[min(360px,90%)] h-auto"
               aria-label="Sri Chakra mandala"
               overflow="visible"
               style={{ filter: "drop-shadow(0 6px 24px rgba(30,58,138,0.5))" }}
@@ -234,18 +231,18 @@ export const SpecializationsSection = () => {
           </div>
 
           {/* RIGHT/BOTTOM — text panel */}
-          <div className="relative flex-1 w-full" style={{ minHeight: "240px", mdMinHeight: "70vh" }}>
+          <div className="relative w-full md:w-[50%] h-[240px] md:h-[360px] flex items-center">
             {specializations.map((item, i) => (
               <div
                 key={i}
                 ref={(el) => { textRefs.current[i] = el; }}
-                className="absolute inset-0 flex flex-col justify-center items-center md:items-start text-center md:text-left px-6 md:pl-8 md:pr-12"
+                className="absolute inset-x-0 flex flex-col justify-center items-center md:items-start text-center md:text-left px-6 md:pl-8 md:pr-12"
                 style={{ opacity: 0, pointerEvents: "none" }}
               >
-                <h3 className="font-season_mix font-[420] text-white text-[1.2rem] sm:text-[1.35rem] md:text-[1.5rem] lg:text-[1.75rem] leading-[1.25] mb-3 md:mb-5 tracking-[-0.01em]">
+                <h3 className="font-season_mix font-[420] text-white text-[1.2rem] sm:text-[1.35rem] md:text-[1.45rem] lg:text-[1.65rem] leading-[1.25] mb-3 md:mb-5 tracking-[-0.01em]">
                   {item.title}
                 </h3>
-                <p className="font-matter text-white/65 text-[14px] sm:text-[15.5px] md:text-[16.5px] leading-[1.7] md:leading-[1.85] max-w-[460px] mb-5 md:mb-8">
+                <p className="font-matter text-white/65 text-[14px] sm:text-[15px] md:text-[15.5px] leading-[1.7] md:leading-[1.8] max-w-[460px] mb-5 md:mb-8">
                   {item.description}
                 </p>
                 <div>
