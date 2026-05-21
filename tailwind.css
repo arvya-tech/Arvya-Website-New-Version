@@ -1,0 +1,780 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* --- Font System ---
+   Koh Santepheap  → Primary headings (loaded via Google Fonts CDN)
+   Playfair Display → Sub-headings / editorial (loaded via Google Fonts CDN)
+   Roboto          → Body text / UI (loaded via Google Fonts CDN)
+*/
+
+/* --- Theme Variables & Layers --- */
+@layer base {
+  html {
+    font-size: 20px;
+  }
+
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Roboto", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* --- Lenis & Scroll Utilities --- */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* --- Custom Scrollbar --- */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* --- GSAP Reveal State --- */
+.gsap-reveal {
+  opacity: 0;
+  visibility: hidden;
+  will-change: transform, opacity;
+}
+
+/* --- Arvya Brand Palette Utilities --- */
+
+/* Brand color tokens */
+:root {
+  --arvya-mint: #10d9a0;
+  /* Mint Green        */
+  --arvya-navy: #0369a1;
+  /* Navy Blue         */
+  --arvya-cyan: #06b6d4;
+  /* Cyan              */
+  --arvya-peach: #fbbf70;
+  /* Warm Peach/Orange */
+  --arvya-slate: #1e293b;
+  /* Dark Slate/Black  */
+  --arvya-white: #ffffff;
+  /* White             */
+}
+
+/* Gradient text — mint-green → navy-cyan (brand palette) */
+.text-gradient {
+  background: linear-gradient(90deg, var(--arvya-mint) 0%, var(--arvya-cyan) 50%, var(--arvya-navy) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Alternative warm gradient text — peach → violet */
+.text-gradient-warm {
+  background: linear-gradient(90deg, #f97316 0%, #a855f7 60%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glassmorphism panel */
+.glass-panel {
+  @apply backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl;
+}
+
+/* Mint-green CTA button */
+.btn-mint {
+  background: linear-gradient(135deg, var(--arvya-mint) 0%, var(--arvya-cyan) 100%);
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+}
+
+.btn-mint:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+/* Manual font utility overrides */
+.font-matter {
+  font-family: "Roboto", sans-serif;
+}
+
+.font-season {
+  font-family: "Koh Santepheap", serif;
+}
+
+.font-playfair {
+  font-family: "Playfair Display", Georgia, serif;
+}
+
+/* ====================================================
+   CTA CARD — Globe & Star Animations
+   ==================================================== */
+
+/* Sri Chakra background theme wrap — covers entire card (Hero-Style) */
+.cta-chakra-bg-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+
+
+/* ====================================================
+   MEGA-MENU NAVIGATION  (Sarvam-style expanding pill)
+   ==================================================== */
+
+/* Nav link buttons */
+.nav-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #3f3f46;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  white-space: nowrap;
+  transition: color 0.18s ease;
+  font-family: inherit;
+}
+
+.nav-link-btn:hover,
+.nav-link-btn--active {
+  color: #4f46e5;
+}
+
+
+.mega-menu-inner-panel {
+  animation: megaInnerIn 0.22s cubic-bezier(0.22, 1, 0.36, 1) both;
+  padding: 0 24px 20px;
+}
+
+@keyframes megaInnerIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Thin separator between nav row and dropdown content */
+.mega-menu-divider {
+  height: 1px;
+  background: #e4e4e7;
+  margin: 0 4px 18px;
+}
+
+/* Assymetric grid: Left side (items) gets more space than Right side (featured card) */
+.mega-menu-body {
+  display: grid;
+  grid-template-columns: 1fr 2.2fr;
+  gap: 28px;
+  max-width: 950px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+/* Left column */
+.mega-menu-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.mega-menu-section-label {
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: #a8a29e;
+  margin-bottom: 10px;
+  padding: 0 8px;
+}
+
+/* Single-column list for items */
+.mega-menu-items {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.mega-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background 0.14s ease;
+}
+
+.mega-menu-item:hover {
+  background: #f4f4f5;
+}
+
+.mega-menu-icon-wrap {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mega-menu-item-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+}
+
+.mega-menu-item-title {
+  font-size: 15.5px;
+  font-weight: 400;
+  color: #1c1917;
+}
+
+.mega-menu-item-subtitle {
+  font-size: 12.5px;
+  color: #78716c;
+  margin-top: 2px;
+}
+
+/* Right column: featured card — HORIZONTAL layout (image left, text right) */
+.mega-menu-feature-card {
+  display: flex;
+  flex-direction: row;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid #e4e4e7;
+  text-decoration: none;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+  height: 187px;
+  margin-top: 12px;
+}
+
+.mega-menu-feature-card:hover {
+  border-color: #d4d4d8;
+  box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.12);
+}
+
+/* Left: gradient image panel */
+.mega-menu-feature-img {
+  position: relative;
+  width: 35%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* --- Services Dropdown 2-Column Grid Layout --- */
+.mega-menu-body--services {
+  grid-template-columns: 1.6fr 1.2fr;
+  max-width: 950px;
+}
+
+.mega-menu-items--services {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  column-gap: 20px;
+  row-gap: 4px;
+}
+
+
+/* Logo/icon image — centered with breathing room */
+.mega-menu-feature-logo-img {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+  z-index: 1;
+  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.22));
+}
+
+/* Screenshot/UI image — fills the panel edge-to-edge */
+.mega-menu-feature-screenshot-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top left;
+  z-index: 1;
+}
+
+.mega-menu-feature-caption {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  z-index: 1;
+  font-family: "Koh Santepheap", serif;
+  text-align: center;
+  padding: 0 8px;
+}
+
+.mega-menu-feature-fade {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 24px;
+  background: linear-gradient(to left, rgba(255, 255, 255, 0.15), transparent);
+}
+
+/* Right: text panel */
+.mega-menu-feature-body-inner {
+  flex: 1;
+  padding: 12px 16px 12px 14px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.mega-menu-feature-title {
+  font-size: 16px;
+  font-weight: 400;
+  color: #1c1917;
+  margin: 0 0 6px 0;
+}
+
+.mega-menu-feature-desc {
+  font-size: 13.5px;
+  color: #78716c;
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* Page backdrop — only blurs content BELOW the header, never the header itself */
+.header-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.15);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  /* z-index must be BELOW the header (z-10000) but above page content */
+  z-index: 9000;
+  pointer-events: auto;
+  /* enable backdrop clicks to close menu */
+  animation: fadeInBackdrop 0.2s ease both;
+}
+
+@keyframes fadeInBackdrop {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* --- Sticky Layout Support & Safety overrides --- */
+html,
+body,
+#app {
+  overflow-x: clip !important;
+}
+
+/* ====================================================
+   ENTERPRISE CENTRALIZED TYPOGRAPHY SYSTEM
+   ==================================================== */
+
+/* Main Hero Heading H1 */
+.arvya-h1-hero {
+  font-family: "Koh Santepheap", serif;
+  font-weight: 420;
+  color: #1c1917; /* text-stone-900 / text-zinc-800 */
+  font-size: 27.5px;
+  line-height: 30px;
+  letter-spacing: -0.625px;
+}
+@media (min-width: 768px) {
+  .arvya-h1-hero {
+    font-size: 42.5px;
+    line-height: 45px;
+    letter-spacing: -1px;
+  }
+}
+
+/* Secondary Section Titles H2 */
+.arvya-h2-section {
+  font-family: "Koh Santepheap", serif;
+  font-weight: 420;
+  color: #1c1917; /* text-stone-900 / text-zinc-800 */
+  font-size: 1.15rem;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+}
+@media (min-width: 768px) {
+  .arvya-h2-section {
+    font-size: 1.65rem;
+    line-height: 1.1;
+  }
+}
+@media (min-width: 1024px) {
+  .arvya-h2-section {
+    font-size: 2rem;
+  }
+}
+
+/* Subheadings / Card Titles H3 */
+.arvya-h3-card {
+  font-family: "Koh Santepheap", serif;
+  font-weight: 420;
+  color: #1c1917;
+  font-size: 1.3rem;
+  line-height: 1.3;
+}
+@media (min-width: 640px) {
+  .arvya-h3-card {
+    font-size: 1.35rem;
+    line-height: 1.25;
+  }
+}
+@media (min-width: 768px) {
+  .arvya-h3-card {
+    font-size: 1.55rem;
+  }
+}
+@media (min-width: 1024px) {
+  .arvya-h3-card {
+    font-size: 1.75rem;
+  }
+}
+
+/* Primary Hero Paragraph / Lead Narrative Text */
+.arvya-body-lead {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300; /* font-light */
+  color: #404040; /* text-neutral-700 / text-zinc-500 */
+  font-size: 0.75rem; /* text-xs */
+  line-height: 1.25rem; /* leading-5 */
+}
+@media (min-width: 768px) {
+  .arvya-body-lead {
+    font-size: 1rem; /* text-base */
+    line-height: 32.5px;
+  }
+}
+
+/* Standard Paragraph Body Text */
+.arvya-body {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300; /* font-light */
+  color: #737373; /* text-stone-500 / text-zinc-500 */
+  font-size: 16.25px;
+  line-height: 1.7;
+}
+@media (min-width: 768px) {
+  .arvya-body {
+    font-size: 17.5px;
+  }
+}
+
+/* Small Support Copy / Card Body Paragraphs */
+.arvya-body-small {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300; /* font-light */
+  color: #737373;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Small Subpage Uppercase Metadata Labels */
+.arvya-label {
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 12px;
+}
+@media (min-width: 768px) {
+  .arvya-label {
+    font-size: 12.5px;
+  }
+}
+
+/* CTA Elements & Buttons */
+.arvya-cta-text {
+  font-family: "Koh Santepheap", serif;
+  font-weight: 580;
+  font-size: 17.5px;
+  line-height: 24px;
+}
+@media (min-width: 768px) {
+  .arvya-cta-text {
+    font-size: 20px;
+  }
+}
+
+
+/* ====================================================
+   COMPONENT SHARED STYLE TOKENS
+   ==================================================== */
+
+/* Shared card header title — ArvyaActionSection, SeeWithYourEyesSection */
+.card-header-title {
+  font-family: 'Geist', 'Geist Fallback', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: #374151;
+  line-height: 28px;
+}
+
+/* Shared LIVE status badge — ArvyaActionSection, SeeWithYourEyesSection */
+.card-live-badge {
+  font-family: 'Geist', 'Geist Fallback', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #4B5563;
+  text-transform: uppercase;
+}
+
+/* Glassmorphic pill — FlowerButton, ProcessingBadge */
+.glass-pill {
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 2px 12px rgba(255, 255, 255, 0.3) inset, 0 4px 20px rgba(0, 0, 0, 0.08);
+  font-family: 'Geist', 'Geist Fallback', sans-serif;
+}
+
+/* Flower section label */
+.flower-label {
+  font-family: 'Geist', 'Geist Fallback', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #6B7280;
+  letter-spacing: 0.01em;
+}
+
+/* UseCasesSection card title */
+.industry-card-title {
+  font-family: 'Geist', 'Geist Fallback', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+  color: #111827;
+}
+
+/* UseCasesSection card description */
+.industry-card-desc {
+  font-family: 'Geist', 'Geist Fallback', sans-serif;
+  font-size: 14.5px;
+  font-weight: 400;
+  line-height: 21.5px;
+  color: #4B5563;
+}
+
+/* OrnamentCard (SeeWithYourEyesSection) outer wrapper */
+.ornament-card {
+  width: 320px;
+  height: 344px;
+}
+
+.ornament-card:hover h3,
+.ornament-card:hover p {
+  color: #ffffff !important;
+}
+
+/* OrnamentCard (SeeWithYourEyesSection) inner SVG wrapper */
+.ornament-card-inner {
+  width: 300px;
+  height: 322px;
+}
+
+/* OrnamentCard glassmorphic action button */
+.ornament-glass-btn {
+  top: 222px;
+  background: rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #ffffff;
+  padding: 9px 18px;
+  border-radius: 25px;
+  font-size: 13.5px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  font-family: 'Geist', 'Geist Fallback', sans-serif;
+  white-space: nowrap;
+}
+
+/* FooterBackground gradient blobs */
+.footer-blob-1 {
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.58) 0%, rgba(147, 197, 253, 0.4) 45%, rgba(255, 255, 255, 0) 72%);
+  opacity: 0.9;
+}
+
+.footer-blob-2 {
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.58) 0%, rgba(186, 230, 253, 0.48) 40%, rgba(255, 255, 255, 0) 70%);
+  opacity: 0.95;
+}
+
+.footer-blob-3 {
+  background: radial-gradient(ellipse, rgba(224, 242, 254, 0.7) 0%, rgba(255, 255, 255, 0) 70%);
+  opacity: 0.85;
+}
+
+/* HeroContent theme image colour treatment */
+.theme-img-filter {
+  filter: invert(1) sepia(0.3) saturate(2) hue-rotate(220deg);
+  mix-blend-mode: multiply;
+  opacity: 0.65;
+}
+
+/* DifferenceSection gradient panel background */
+.difference-gradient-bg {
+  background: linear-gradient(150deg, #1E40AF 0%, #3B82F6 50%, #BAE6FD 100%);
+}
+
+/* DifferenceSection diamond ornament — shared static styles */
+.diamond-ornament {
+  left: 50%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%) scaleY(0.5) rotate(45deg);
+  background: rgba(255, 255, 255, 0.22);
+  border-radius: 16%;
+  backdrop-filter: blur(17.5px);
+  -webkit-backdrop-filter: blur(17.5px);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+}
+
+/* ====================================================
+   SRI CHAKRA SCROLL ANIMATION SECTION
+   ==================================================== */
+
+/* Dark card wrapper */
+.sri-chakra-card {
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 32px 80px rgba(0, 0, 0, 0.45),
+    0 0 120px rgba(220, 38, 38, 0.06) inset;
+}
+
+/* Progress dot indicators */
+.sri-dot {
+  transition: background 0.4s ease, transform 0.4s ease, width 0.4s ease;
+}
+.sri-dot--active {
+  background: #dc2626 !important;
+  transform: scale(1.4);
+}
+
+/* SVG layer glow state (applied via GSAP) */
+.sri-layer-glow {
+  filter: drop-shadow(0 0 14px rgba(220, 38, 38, 0.65));
+}
+
+/* Subtle grid texture overlay on dark bg */
+.sri-chakra-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  border-radius: inherit;
+  z-index: 0;
+}
+.sri-chakra-card > * {
+  position: relative;
+  z-index: 1;
+}

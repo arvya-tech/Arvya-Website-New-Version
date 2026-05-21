@@ -1,0 +1,43 @@
+[2026-05-20 12:05:30] INFO     fetch        — Process started — crawl=True ingest=True
+[2026-05-20 12:05:31] INFO     fetch        — Crawl started — base_url=http://localhost:5173 routes=11
+[2026-05-20 12:06:00] INFO     fetch        — crawled  home                                            2316 chars  7.75s
+[2026-05-20 12:06:03] INFO     fetch        — crawled  about                                           3401 chars  2.89s
+[2026-05-20 12:06:06] INFO     fetch        — crawled  products/invoicy                                6643 chars  2.91s
+[2026-05-20 12:06:09] INFO     fetch        — crawled  products/analytics                              5352 chars  2.54s
+[2026-05-20 12:06:10] INFO     fetch        — crawled  products/ai-chat                                1407 chars  1.92s
+[2026-05-20 12:06:12] INFO     fetch        — crawled  products/agentic-rag                            1571 chars  1.94s
+[2026-05-20 12:06:15] INFO     fetch        — crawled  services/on-premise                             1977 chars  2.19s
+[2026-05-20 12:06:17] INFO     fetch        — crawled  services/industry-specific-ai                   1511 chars  1.91s
+[2026-05-20 12:06:19] INFO     fetch        — crawled  services/agentic-workflows                      2211 chars  2.12s
+[2026-05-20 12:06:21] INFO     fetch        — crawled  services/data-infrastructure                    2139 chars  2.26s
+[2026-05-20 12:06:23] INFO     fetch        — crawled  services/data-sovereignty                       2064 chars  2.35s
+[2026-05-20 12:06:23] INFO     fetch        — Crawl complete — 11/11 pages in 52.58s
+[2026-05-20 12:06:26] INFO     fetch        — Ingest started — 19 files in knowledge
+[2026-05-20 12:06:26] INFO     fetch        — chunked  company                                           10 chunks
+[2026-05-20 12:06:26] INFO     fetch        — chunked  contact                                           6 chunks
+[2026-05-20 12:06:26] INFO     fetch        — chunked  how-we-work                                       9 chunks
+[2026-05-20 12:06:26] INFO     fetch        — chunked  products/agentic-rag                              8 chunks
+[2026-05-20 12:06:26] INFO     fetch        — chunked  products/ai-chat                                  8 chunks
+[2026-05-20 12:06:26] INFO     fetch        — chunked  products/analytics                                10 chunks
+[2026-05-20 12:06:26] INFO     fetch        — chunked  products/invoicy                                  12 chunks
+[2026-05-20 12:06:26] INFO     fetch        — chunked  products/on-premise                               10 chunks
+[2026-05-20 12:06:26] INFO     fetch        — chunked  website/about                                     11 chunks
+[2026-05-20 12:06:26] INFO     fetch        — chunked  website/home                                      8 chunks
+[2026-05-20 12:06:26] INFO     fetch        — chunked  website/products/agentic-rag                      6 chunks
+[2026-05-20 12:06:26] INFO     fetch        — chunked  website/products/ai-chat                          4 chunks
+[2026-05-20 12:06:26] INFO     fetch        — chunked  website/products/analytics                        17 chunks
+[2026-05-20 12:06:26] INFO     fetch        — chunked  website/products/invoicy                          20 chunks
+[2026-05-20 12:06:26] INFO     fetch        — chunked  website/services/agentic-workflows                7 chunks
+[2026-05-20 12:06:26] INFO     fetch        — chunked  website/services/data-infrastructure              7 chunks
+[2026-05-20 12:06:26] INFO     fetch        — chunked  website/services/data-sovereignty                 6 chunks
+[2026-05-20 12:06:26] INFO     fetch        — chunked  website/services/industry-specific-ai             5 chunks
+[2026-05-20 12:06:26] INFO     fetch        — chunked  website/services/on-premise                       7 chunks
+[2026-05-20 12:06:26] INFO     fetch        — Chunking complete — 171 total chunks in 0.059s
+[2026-05-20 12:06:26] INFO     fetch        — Embedding with model='all-MiniLM-L6-v2' into ChromaDB at 'C:\Users\info\Codes\Arvya_Website\Arvya_Website_V1\backend_python\chroma_db'
+[2026-05-20 12:06:55] INFO     fetch        — Existing collection 'arvya_knowledge' cleared
+[2026-05-20 12:06:57] INFO     fetch        — batch embedded    64/171  2.393s
+[2026-05-20 12:07:00] INFO     fetch        — batch embedded   128/171  2.752s
+[2026-05-20 12:07:01] INFO     fetch        — batch embedded   171/171  0.711s
+[2026-05-20 12:07:01] INFO     fetch        — Embedding complete — 35.263s
+[2026-05-20 12:07:01] INFO     fetch        — Ingest complete — 171 vectors | total time 35.326s
+[2026-05-20 12:07:01] INFO     fetch        — Process complete — total time 90.85s

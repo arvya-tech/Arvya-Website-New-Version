@@ -1,0 +1,82 @@
+[2026-05-20 11:10:06] INFO     app          — Starting Arvya backend on http://localhost:3001
+[2026-05-20 11:23:26] INFO     app          — OPTIONS /api/chat → 200 (0.001s)
+[2026-05-20 11:23:26] INFO     app          — chat — userInput='how the database analytics works'
+[2026-05-20 11:23:26] DEBUG    retrieval    — search query='how the database analytics works' top_k=5
+[2026-05-20 11:23:26] INFO     retrieval    — Connecting to ChromaDB at 'C:\Users\info\Codes\Arvya_Website\Arvya_Website_V1\backend_python\chroma_db' collection='arvya_knowledge'
+[2026-05-20 11:23:44] INFO     retrieval    — ChromaDB ready — 73 vectors loaded
+[2026-05-20 11:23:44] INFO     retrieval    — search returned 5 chunks in 17.532s
+[2026-05-20 11:23:44] INFO     llm          — LLM stream start — model=meta-llama/llama-3.3-70b-instruct:free messages=3
+[2026-05-20 11:23:44] INFO     app          — POST /api/chat → 200 (17.562s)
+[2026-05-20 11:23:46] ERROR    app          — chat FAILED after 19.604s — Attempted to access streaming response content, without having called `read()`.
+[2026-05-20 11:25:03] INFO     app          — Starting Arvya backend on http://localhost:3001
+[2026-05-20 11:25:07] INFO     app          — chat — userInput='how the database analytics works'
+[2026-05-20 11:25:07] DEBUG    retrieval    — search query='how the database analytics works' top_k=5
+[2026-05-20 11:25:07] INFO     retrieval    — Connecting to ChromaDB at 'C:\Users\info\Codes\Arvya_Website\Arvya_Website_V1\backend_python\chroma_db' collection='arvya_knowledge'
+[2026-05-20 11:25:21] INFO     retrieval    — ChromaDB ready — 73 vectors loaded
+[2026-05-20 11:25:21] INFO     retrieval    — search returned 5 chunks in 14.323s
+[2026-05-20 11:25:21] INFO     llm          — LLM stream start — model=meta-llama/llama-3.3-70b-instruct:free messages=5
+[2026-05-20 11:25:21] INFO     app          — POST /api/chat → 200 (14.344s)
+[2026-05-20 11:25:22] ERROR    llm          — OpenRouter HTTP error 429 after 1.150s — Too Many Requests
+[2026-05-20 11:25:22] ERROR    app          — chat FAILED after 15.477s — OpenRouter API error 429: Too Many Requests
+[2026-05-20 11:56:16] INFO     app          — Starting Arvya backend on http://localhost:3001
+[2026-05-20 12:00:46] INFO     app          — OPTIONS /api/chat → 200 (0.001s)
+[2026-05-20 12:00:46] INFO     app          — chat — userInput='list the steps how database analyses works'
+[2026-05-20 12:00:46] DEBUG    retrieval    — search query='list the steps how database analyses works' top_k=5
+[2026-05-20 12:00:46] INFO     retrieval    — Connecting to ChromaDB at 'C:\Users\info\Codes\Arvya_Website\Arvya_Website_V1\backend_python\chroma_db' collection='arvya_knowledge'
+[2026-05-20 12:01:20] INFO     retrieval    — ChromaDB ready — 73 vectors loaded
+[2026-05-20 12:01:20] INFO     retrieval    — search returned 5 chunks in 34.394s
+[2026-05-20 12:01:20] INFO     llm          — LLM try [1/3] model=openai/gpt-oss-20b:free
+[2026-05-20 12:01:20] INFO     app          — POST /api/chat → 200 (34.434s)
+[2026-05-20 12:01:23] WARNING  llm          — Model 'openai/gpt-oss-20b:free' failed after 3.334s — HTTP 429: Too Many Requests — trying next model
+[2026-05-20 12:01:23] INFO     llm          — LLM try [2/3] model=nvidia/nemotron-3-super-120b-a12b:free
+[2026-05-20 12:03:11] INFO     app          — Starting Arvya backend on http://localhost:3001
+[2026-05-20 12:03:14] INFO     app          — chat — userInput='list the step how the database analyses works'
+[2026-05-20 12:03:14] DEBUG    retrieval    — search query='list the step how the database analyses works' top_k=5
+[2026-05-20 12:03:14] INFO     retrieval    — Connecting to ChromaDB at 'C:\Users\info\Codes\Arvya_Website\Arvya_Website_V1\backend_python\chroma_db' collection='arvya_knowledge'
+[2026-05-20 12:03:33] INFO     retrieval    — ChromaDB ready — 73 vectors loaded
+[2026-05-20 12:03:33] INFO     retrieval    — search returned 5 chunks in 19.215s
+[2026-05-20 12:03:33] INFO     llm          — LLM try [1/3] model=openai/gpt-oss-20b:free
+[2026-05-20 12:03:33] INFO     app          — POST /api/chat → 200 (19.260s)
+[2026-05-20 12:03:36] WARNING  llm          — Model 'openai/gpt-oss-20b:free' failed after 2.394s — HTTP 429: Too Many Requests — trying next model
+[2026-05-20 12:03:36] INFO     llm          — LLM try [2/3] model=nvidia/nemotron-3-super-120b-a12b:free
+[2026-05-20 12:04:05] INFO     llm          — LLM done — model=nvidia/nemotron-3-super-120b-a12b:free tokens=1 time=29.183s
+[2026-05-20 12:04:05] INFO     app          — chat complete — total request time 50.798s
+[2026-05-20 12:04:46] INFO     app          — chat — userInput='How It Works From login to insight in six simple steps.'
+[2026-05-20 12:04:46] DEBUG    retrieval    — search query='How It Works From login to insight in six simple steps.' top_k=5
+[2026-05-20 12:04:46] INFO     retrieval    — search returned 5 chunks in 0.081s
+[2026-05-20 12:04:46] INFO     llm          — LLM try [1/3] model=openai/gpt-oss-20b:free
+[2026-05-20 12:04:46] INFO     app          — POST /api/chat → 200 (0.117s)
+[2026-05-20 12:07:17] INFO     app          — Starting Arvya backend on http://localhost:3001
+[2026-05-20 12:08:33] INFO     app          — chat — userInput='list the steps How It Works From login to insight in six simple steps.'
+[2026-05-20 12:08:33] DEBUG    retrieval    — search query='list the steps How It Works From login to insight in six simple steps.' top_k=5
+[2026-05-20 12:08:33] INFO     retrieval    — Connecting to ChromaDB at 'C:\Users\info\Codes\Arvya_Website\Arvya_Website_V1\backend_python\chroma_db' collection='arvya_knowledge'
+[2026-05-20 12:08:53] INFO     retrieval    — ChromaDB ready — 171 vectors loaded
+[2026-05-20 12:08:53] INFO     retrieval    — search returned 5 chunks in 20.044s
+[2026-05-20 12:08:53] INFO     llm          — LLM try [1/3] model=openai/gpt-oss-20b:free
+[2026-05-20 12:08:53] INFO     app          — POST /api/chat → 200 (20.085s)
+[2026-05-20 12:09:11] INFO     llm          — LLM done — model=openai/gpt-oss-20b:free tokens=190 time=17.700s
+[2026-05-20 12:09:11] INFO     app          — chat complete — total request time 37.748s
+[2026-05-20 23:15:47] INFO     app          — Starting Arvya backend on http://localhost:3001
+[2026-05-20 23:16:54] INFO     app          — OPTIONS /api/chat → 200 (0.001s)
+[2026-05-20 23:16:54] INFO     app          — chat — userInput='How It Works From login to insight in six simple steps. in database anaylsis\'
+[2026-05-20 23:16:54] DEBUG    retrieval    — search query='How It Works From login to insight in six simple steps. in database anaylsis\' top_k=5
+[2026-05-20 23:16:54] INFO     retrieval    — Connecting to ChromaDB at 'C:\Users\info\Codes\Arvya_Website\Arvya_Website_V1\backend_python\chroma_db' collection='arvya_knowledge'
+[2026-05-20 23:17:31] INFO     retrieval    — ChromaDB ready — 171 vectors loaded
+[2026-05-20 23:17:31] INFO     retrieval    — search returned 5 chunks in 37.286s
+[2026-05-20 23:17:31] INFO     llm          — LLM try [1/3] model=openai/gpt-oss-20b:free
+[2026-05-20 23:17:31] INFO     app          — POST /api/chat → 200 (37.323s)
+[2026-05-20 23:17:34] WARNING  llm          — Model 'openai/gpt-oss-20b:free' failed after 2.686s — HTTP 429: Too Many Requests — trying next model
+[2026-05-20 23:17:34] INFO     llm          — LLM try [2/3] model=nvidia/nemotron-3-super-120b-a12b:free
+[2026-05-20 23:17:54] INFO     llm          — LLM done — model=nvidia/nemotron-3-super-120b-a12b:free tokens=1 time=20.282s
+[2026-05-20 23:17:54] INFO     app          — chat complete — total request time 60.258s
+[2026-05-21 12:27:37] INFO     app          — Starting Arvya backend on http://localhost:3001
+[2026-05-21 12:27:55] INFO     app          — OPTIONS /api/chat → 200 (0.000s)
+[2026-05-21 12:27:55] INFO     app          — chat — userInput='Hi'
+[2026-05-21 12:27:55] DEBUG    retrieval    — search query='Hi' top_k=5
+[2026-05-21 12:27:55] INFO     retrieval    — Connecting to ChromaDB at 'C:\Users\info\Downloads\Arvya_Website_Final_20_05 Shanmuk Bro\Arvya_Website_Final_20_05\backend_python\chroma_db' collection='arvya_knowledge'
+[2026-05-21 12:28:49] INFO     retrieval    — ChromaDB ready — 171 vectors loaded
+[2026-05-21 12:28:49] INFO     retrieval    — search returned 5 chunks in 54.399s
+[2026-05-21 12:28:49] INFO     llm          — LLM try [1/3] model=openai/gpt-oss-20b:free
+[2026-05-21 12:28:49] INFO     app          — POST /api/chat → 200 (54.427s)
+[2026-05-21 12:29:13] INFO     llm          — LLM done — model=openai/gpt-oss-20b:free tokens=21 time=23.713s
+[2026-05-21 12:29:13] INFO     app          — chat complete — total request time 78.117s
