@@ -76,32 +76,34 @@ function TitleManager() {
 export default function App() {
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.1,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      lerp: 0.08,             // Butter-smooth cinematic damping on desktop
+      syncTouch: false,       // Allows native, highly-optimized hardware touch scrolling on mobile!
+      wheelMultiplier: 1.0,   // Perfect mousewheel response
+      smoothWheel: true,
       orientation: "vertical",
       gestureOrientation: "vertical",
-      smoothWheel: true,
-      wheelMultiplier: 0.9,
-      touchMultiplier: 1.5,
-      infinite: false,
     });
 
     // Expose lenis globally so MobileNavbar can stop/start it
     (window as unknown as Record<string, unknown>).__lenis = lenis;
 
+    // Connect ScrollTrigger updates directly to Lenis
     lenis.on("scroll", ScrollTrigger.update);
 
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
+    // Frame-symmetrical GSAP integration: drive Lenis updates using GSAP's optimized ticker cycle
+    const tickHandler = (time: number) => {
+      lenis.raf(time * 1000); // lenis.raf expects milliseconds
+    };
+    gsap.ticker.add(tickHandler);
+    
+    // Deactivate lag smoothing to ensure instant trigger responses
+    gsap.ticker.lagSmoothing(0);
 
-    requestAnimationFrame(raf);
-
-    const refreshId = window.setTimeout(() => ScrollTrigger.refresh(), 200);
+    const refreshId = window.setTimeout(() => ScrollTrigger.refresh(), 250);
 
     return () => {
       window.clearTimeout(refreshId);
+      gsap.ticker.remove(tickHandler);
       lenis.destroy();
       delete (window as unknown as Record<string, unknown>).__lenis;
     };
