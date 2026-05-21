@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { type LucideIcon } from "lucide-react";
 
 // ---------- Types (exported so DesktopNavbar can use them) ----------
@@ -310,13 +310,13 @@ export const DesktopNavLinks = ({ activeMenu, onEnter, onLeave }: Props) => {
           onMouseEnter={() => (link.items ? onEnter(link.label) : onLeave())}
         >
           {link.href && !link.items ? (
-            <a
-              href={link.href}
+            <Link
+              to={link.href}
               className={`nav-link-btn${activeMenu === link.label ? " nav-link-btn--active" : ""
                 }`}
             >
               {link.label}
-            </a>
+            </Link>
           ) : (
             <button
               type="button"

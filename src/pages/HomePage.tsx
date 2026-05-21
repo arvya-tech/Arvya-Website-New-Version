@@ -59,17 +59,16 @@ export const HomePage = () => {
 
         gsap.fromTo(
           items,
-          { opacity: 0, y: 36, filter: "blur(7.5px)" },
+          { opacity: 0, y: 28 },
           {
             opacity: 1,
             y: 0,
-            filter: "blur(0px)",
-            duration: 0.9,
-            stagger: 0.08,
-            ease: "power3.out",
+            duration: 0.8,
+            stagger: 0.07,
+            ease: "power2.out",
             scrollTrigger: {
               trigger: wrapper,
-              start: "top 82%",
+              start: "top 85%",
               toggleActions: "play none none none",
             },
           },

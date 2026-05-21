@@ -7,6 +7,15 @@ export const HeroSection = () => {
 
   useEffect(() => {
     if (!heroRef.current) return;
+
+    // Set initial state immediately to prevent flash of visible content
+    // before GSAP takes over
+    const elements = heroRef.current.querySelectorAll(".hero-animate");
+    elements.forEach((el) => {
+      (el as HTMLElement).style.opacity = "0";
+      (el as HTMLElement).style.transform = "translateY(28px)";
+    });
+
     const ctx = gsap.context(() => {
       gsap.fromTo(
         ".hero-animate",
@@ -17,7 +26,8 @@ export const HeroSection = () => {
           duration: 0.9,
           stagger: 0.14,
           ease: "power2.out",
-          delay: 0.2,
+          delay: 0.15,
+          clearProps: "transform,opacity",
         },
       );
     }, heroRef);
@@ -28,7 +38,7 @@ export const HeroSection = () => {
   return (
     <section
       ref={heroRef}
-      className="relative box-border caret-transparent flex flex-col items-center justify-center outline-[3.75px] overflow-hidden min-h-screen pt-20 md:pt-24"
+      className="relative box-border caret-transparent flex flex-col items-center justify-center outline-[3.75px] min-h-screen pt-[72px] md:pt-24"
     >
       {/* Top fade — lets the frosted header float cleanly over the gradient */}
       <div className="absolute bg-[linear-gradient(to_bottom,rgba(255,255,255,1)_0%,rgba(255,255,255,0)_100%)] box-border caret-transparent h-28 w-full z-10 left-0 top-0 pointer-events-none" />

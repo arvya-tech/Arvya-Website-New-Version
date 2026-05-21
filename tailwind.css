@@ -86,8 +86,16 @@ html.lenis body {
   overscroll-behavior: contain;
 }
 
+/* Mobile menu scroll lock — applied via classList.add('lenis-stopped') */
 .lenis.lenis-stopped {
   overflow: hidden;
+}
+
+/* Also handle when class is on html directly (our mobile menu approach) */
+html.lenis-stopped,
+html.lenis-stopped body {
+  overflow: hidden !important;
+  touch-action: none !important;
 }
 
 .lenis.lenis-scrolling iframe {
@@ -116,6 +124,11 @@ html.lenis body {
 .gsap-reveal {
   opacity: 0;
   visibility: hidden;
+  will-change: transform, opacity;
+}
+
+/* Hero animation elements — GPU compositing for smooth mobile performance */
+.hero-animate {
   will-change: transform, opacity;
 }
 
@@ -463,10 +476,16 @@ html.lenis body {
 }
 
 /* --- Sticky Layout Support & Safety overrides --- */
-html,
-body,
+/* overflow-x: hidden on html prevents horizontal scroll without breaking fixed positioning */
+html {
+  overflow-x: hidden;
+}
+body {
+  overflow-x: hidden;
+}
+/* The #app itself should NOT use clip — it breaks fixed children like mobile menu */
 #app {
-  overflow-x: clip !important;
+  overflow-x: hidden;
 }
 
 /* ====================================================
