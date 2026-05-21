@@ -19,6 +19,10 @@ import { IndustrySpecificAiPage } from "@/pages/services/IndustrySpecificAiPage"
 import { AgenticWorkflowsPage } from "@/pages/services/AgenticWorkflowsPage";
 import { DataInfrastructurePage } from "@/pages/services/DataInfrastructurePage";
 import { DataSovereigntyPage } from "@/pages/services/DataSovereigntyPage";
+import { PrivacyPolicyPage } from "@/pages/PrivacyPolicyPage";
+import { TermsOfServicePage } from "@/pages/TermsOfServicePage";
+import { CookiesPolicyPage } from "@/pages/CookiesPolicyPage";
+import { CookieConsentBanner } from "./components/CookieConsentBanner";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -128,6 +132,11 @@ export default function App() {
             <Route path="/services/agentic-workflows" element={<AgenticWorkflowsPage />} />
             <Route path="/services/data-infrastructure" element={<DataInfrastructurePage />} />
             <Route path="/services/data-sovereignty" element={<DataSovereigntyPage />} />
+
+            {/* Legal pages */}
+            <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+            <Route path="/terms-of-service" element={<TermsOfServicePage />} />
+            <Route path="/cookies-policy" element={<CookiesPolicyPage />} />
           </Routes>
         </div>
 
@@ -136,6 +145,9 @@ export default function App() {
         
         {/* Persistent Chatbot */}
         <Chatbot />
+
+        {/* Cookie Consent Banner */}
+        <CookieConsentBanner />
       </div>
     </BrowserRouter>
   );

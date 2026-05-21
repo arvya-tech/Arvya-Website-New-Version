@@ -1,5 +1,6 @@
 import { FooterBrand } from "@/sections/Footer/components/FooterBrand";
 import { FooterColumn } from "@/sections/Footer/components/FooterColumn";
+import { Link } from "react-router-dom";
 
 export const FooterContent = () => {
   return (
@@ -49,12 +50,25 @@ export const FooterContent = () => {
               { label: "LinkedIn", href: "https://www.linkedin.com/company/arvya-tech-pvt-ltd/" },
             ]}
           />
+          <FooterColumn
+            title="Legal"
+            links={[
+              { label: "Privacy Policy", href: "/privacy-policy" },
+              { label: "Terms of Service", href: "/terms-of-service" },
+              { label: "Cookies Policy", href: "/cookies-policy" },
+            ]}
+          />
         </div>
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-zinc-200 pt-2 text-stone-400 text-[12px] flex flex-col md:flex-row justify-between items-center gap-2">
-        <p className="font-matter">© 2025 Arvya Tech. All rights reserved.</p>
+      <div className="border-t border-zinc-200 pt-3 text-stone-400 text-[12px] flex flex-col md:flex-row justify-between items-center gap-2">
+        <p className="font-matter">© 2025 Arvya Tech Private Limited. All rights reserved.</p>
+        <div className="flex gap-4">
+          <Link to="/privacy-policy" className="font-matter hover:text-stone-600 transition-colors">Privacy</Link>
+          <Link to="/terms-of-service" className="font-matter hover:text-stone-600 transition-colors">Terms</Link>
+          <Link to="/cookies-policy" className="font-matter hover:text-stone-600 transition-colors">Cookies</Link>
+        </div>
       </div>
     </div>
   );

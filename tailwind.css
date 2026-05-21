@@ -777,4 +777,56 @@ body,
 .sri-chakra-card > * {
   position: relative;
   z-index: 1;
-}
+}
+
+/* ====================================================
+   LEGAL / POLICY PAGES — Shared Typography
+   ==================================================== */
+
+.policy-body h2 {
+  font-family: "Koh Santepheap", serif;
+  font-weight: 420;
+  font-size: 1.15rem;
+  color: #1c1917;
+  margin-bottom: 0.6rem;
+  margin-top: 0.25rem;
+  letter-spacing: -0.01em;
+}
+
+.policy-body ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.policy-body ul li {
+  padding-left: 1.2rem;
+  position: relative;
+  color: #57534e;
+}
+
+.policy-body ul li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: #a8a29e;
+  font-size: 0.85em;
+}
+
+.policy-body section {
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid #f4f4f5;
+}
+
+.policy-body section:last-child {
+  border-bottom: none;
+}
+
+.policy-body table th,
+.policy-body table td {
+  font-family: "Roboto", sans-serif;
+}
+
