@@ -35,7 +35,7 @@ export const Header = () => {
             `}
           >
             <DesktopNavbar onMenuOpen={setMenuOpen} />
-            <MobileNavbar />
+            <MobileNavbar isOpen={menuOpen} onOpenChange={setMenuOpen} />
           </div>
         </div>
       </header>

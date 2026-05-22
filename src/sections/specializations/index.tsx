@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowRight } from "lucide-react";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -100,7 +100,6 @@ export const SpecializationsSection = () => {
   const cardRef   = useRef<HTMLDivElement>(null);
   const layerRefs = useRef<(SVGGElement | null)[]>([]);
   const textRefs  = useRef<(HTMLDivElement | null)[]>([]);
-  const barRef    = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -126,9 +125,6 @@ export const SpecializationsSection = () => {
         scrub: 3,            // heavy scrub = silky slow
         pin: cardRef.current,
         pinSpacing: true,
-        onUpdate(self) {
-          if (barRef.current) gsap.set(barRef.current, { scaleX: self.progress });
-        },
       },
     });
 
@@ -157,8 +153,8 @@ export const SpecializationsSection = () => {
     step(4, 8);
 
     // Grand-finale — all layers glow then settle
-    tl.to(layers, { filter: "drop-shadow(0 0 28px rgba(255,255,255,1))",   duration: 0.8 }, 10)
-      .to(layers, { filter: "drop-shadow(0 0 10px rgba(255,255,255,0.35))", duration: 1.2 }, 10.8)
+    tl.to(layers, { filter: "drop-shadow(0 0 24px rgba(168,85,247,0.9))",   duration: 0.8 }, 10)
+      .to(layers, { filter: "drop-shadow(0 0 12px rgba(168,85,247,0.35))", duration: 1.2 }, 10.8)
       .to({}, { duration: 2 });
 
     return () => { tl.scrollTrigger?.kill(); tl.kill(); };
@@ -174,22 +170,27 @@ export const SpecializationsSection = () => {
         ref={cardRef}
         className="w-full rounded-[2.5rem] md:rounded-[3.5rem] overflow-hidden flex flex-col justify-between"
         style={{
-          background: "linear-gradient(145deg,#1E3A8A 0%,#2563EB 42%,#60A5FA 78%,#BFDBFE 100%)",
-          boxShadow: "0 40px 100px rgba(30,58,138,0.4), 0 0 0 1px rgba(255,255,255,0.12)",
+          background: "linear-gradient(135deg, #07070B 0%, #0F0F17 40%, #17152B 75%, #221A3B 100%)",
+          border: "1px solid rgba(168, 85, 247, 0.12)",
+          boxShadow: "0 40px 100px rgba(0, 0, 0, 0.75), inset 0 1px 2px rgba(255, 255, 255, 0.05)",
           minHeight: "72vh",
         }}
       >
-        {/* Thin progress bar */}
-        <div className="h-[3px] w-full" style={{ background: "rgba(255,255,255,0.12)" }}>
-          <div ref={barRef} className="h-full origin-left" style={{ background: "rgba(255,255,255,0.7)", transform: "scaleX(0)" }} />
-        </div>
 
         {/* Section label + title */}
         <div className="text-center px-6 pt-8 pb-2 md:pt-10">
-          <p className="text-white/45 text-[10.5px] uppercase tracking-[0.25em] font-semibold mb-2 font-matter">
+          <p className="text-purple-400/80 text-[10.5px] uppercase tracking-[0.25em] font-semibold mb-2 font-matter">
             Specializations
           </p>
-          <h2 className="font-season_mix font-[420] text-white text-[1.05rem] md:text-[1.4rem] lg:text-[1.7rem] leading-[1.1] tracking-[-0.015em]">
+          <h2
+            className="font-season_mix font-[420] text-[1.25rem] md:text-[1.7rem] lg:text-[2.1rem] leading-[1.1] tracking-[-0.015em]"
+            style={{
+              background: "linear-gradient(135deg, #FFFFFF 40%, #E9D5FF 75%, #A855F7 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              filter: "drop-shadow(0 2px 10px rgba(168,85,247,0.15))"
+            }}
+          >
             The Sacred Geometry of Sovereign AI
           </h2>
         </div>
@@ -201,7 +202,12 @@ export const SpecializationsSection = () => {
             {/* ambient radial glow */}
             <div
               className="absolute rounded-full pointer-events-none"
-              style={{ width: "65%", height: "65%", background: "radial-gradient(circle, rgba(255,255,255,0.22) 0%, transparent 70%)" }}
+              style={{
+                width: "75%",
+                height: "75%",
+                background: "radial-gradient(circle, rgba(168, 85, 247, 0.18) 0%, rgba(99, 102, 241, 0.06) 45%, transparent 75%)",
+                filter: "blur(40px)"
+              }}
             />
 
             {/* ── Master SVG ── */}
@@ -210,8 +216,45 @@ export const SpecializationsSection = () => {
               className="w-[165px] sm:w-[185px] md:w-[min(360px,90%)] h-auto"
               aria-label="Sri Chakra mandala"
               overflow="visible"
-              style={{ filter: "drop-shadow(0 6px 24px rgba(30,58,138,0.5))" }}
+              style={{ filter: "drop-shadow(0 8px 32px rgba(168, 85, 247, 0.15))" }}
             >
+              <defs>
+                {/* 1. Main glassmorphic triangle fill gradient */}
+                <linearGradient id="triangleFill" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#C084FC" stopOpacity="0.25" />
+                  <stop offset="50%" stopColor="#818CF8" stopOpacity="0.16" />
+                  <stop offset="100%" stopColor="#38BDF8" stopOpacity="0.08" />
+                </linearGradient>
+
+                {/* 2. Iridescent glowing border/stroke gradient */}
+                <linearGradient id="triangleStroke" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#F3E8FF" />
+                  <stop offset="30%" stopColor="#C084FC" />
+                  <stop offset="70%" stopColor="#6366F1" />
+                  <stop offset="100%" stopColor="#38BDF8" />
+                </linearGradient>
+
+                {/* 3. Golden-amber inner triangle fill for Layer 5 (innermost core) */}
+                <linearGradient id="innerFill" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#FBBF24" stopOpacity="0.35" />
+                  <stop offset="100%" stopColor="#F59E0B" stopOpacity="0.15" />
+                </linearGradient>
+
+                {/* 4. Golden-amber inner triangle border for Layer 5 */}
+                <linearGradient id="innerStroke" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#FFFDF5" />
+                  <stop offset="50%" stopColor="#FBBF24" />
+                  <stop offset="100%" stopColor="#D97706" />
+                </linearGradient>
+
+                {/* 5. Stellar sunburst radial gradient for Bindu dot */}
+                <radialGradient id="binduRadial" cx="50%" cy="50%" r="50%" fx="30%" fy="30%">
+                  <stop offset="0%" stopColor="#FFFFFF" />
+                  <stop offset="40%" stopColor="#FBBF24" />
+                  <stop offset="100%" stopColor="#D97706" />
+                </radialGradient>
+              </defs>
+
               {LAYERS.map((layer, li) => (
                 <g
                   key={li}
@@ -220,10 +263,30 @@ export const SpecializationsSection = () => {
                   style={{ opacity: 0 }}
                 >
                   {layer.paths.map((d, pi) => (
-                    <path key={pi} d={d} fill="rgba(255,255,255,0.93)" />
+                    <path
+                      key={pi}
+                      d={d}
+                      fill={li === 4 ? "url(#innerFill)" : "url(#triangleFill)"}
+                      stroke={li === 4 ? "url(#innerStroke)" : "url(#triangleStroke)"}
+                      strokeWidth="1.6"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      style={{
+                        filter: `drop-shadow(0 0 ${li === 4 ? "12px" : "6px"} ${li === 4 ? "rgba(251,191,36,0.3)" : "rgba(168,85,247,0.18)"})`,
+                        transition: "all 0.5s ease"
+                      }}
+                    />
                   ))}
                   {(layer as any).dot && (
-                    <circle cx="45.5" cy="36" r="8" fill="rgba(30,58,138,0.9)" />
+                    <circle
+                      cx="45.5"
+                      cy="36"
+                      r="7.5"
+                      fill="url(#binduRadial)"
+                      stroke="#FFFFFF"
+                      strokeWidth="1.5"
+                      style={{ filter: "drop-shadow(0 0 12px rgba(251,191,36,0.95))" }}
+                    />
                   )}
                 </g>
               ))}
@@ -248,10 +311,15 @@ export const SpecializationsSection = () => {
                 <div>
                   <Link
                     to={item.path}
-                    className="inline-flex items-center gap-2 px-5 py-2 md:px-6 md:py-2.5 rounded-full text-xs md:text-[13px] font-semibold text-white transition-all duration-200 active:scale-95"
-                    style={{ background: "rgba(255,255,255,0.18)", border: "1px solid rgba(255,255,255,0.38)", backdropFilter: "blur(12px)" }}
+                    className="inline-flex items-center gap-2 px-5 py-2 md:px-6 md:py-2.5 rounded-full text-xs md:text-[13px] font-semibold text-white transition-all duration-300 hover:text-purple-100 hover:bg-purple-500/10 hover:border-purple-400/40 hover:shadow-[0_0_15px_rgba(168,85,247,0.3)] active:scale-95 group"
+                    style={{
+                      background: "rgba(168, 85, 247, 0.06)",
+                      border: "1px solid rgba(168, 85, 247, 0.22)",
+                      backdropFilter: "blur(12px)",
+                      boxShadow: "0 4px 24px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.05)",
+                    }}
                   >
-                    Learn More <ArrowRight className="w-3.5 h-3.5" />
+                    Learn More
                   </Link>
                 </div>
               </div>

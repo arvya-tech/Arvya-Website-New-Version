@@ -74,10 +74,25 @@ const ChevronIcon = ({ open }: { open: boolean }) => (
 // ---------------------------------------------------------------------------
 // Main Component
 // ---------------------------------------------------------------------------
-export const MobileNavbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+export const MobileNavbar = ({
+  isOpen: controlledIsOpen,
+  onOpenChange,
+}: {
+  isOpen?: boolean;
+  onOpenChange?: (open: boolean) => void;
+}) => {
+  const [localIsOpen, setLocalIsOpen] = useState(false);
+  const isControlled = controlledIsOpen !== undefined;
+  const isOpen = isControlled ? controlledIsOpen : localIsOpen;
+  const setIsOpen = (val: boolean) => {
+    if (isControlled) {
+      onOpenChange?.(val);
+    } else {
+      setLocalIsOpen(val);
+    }
+  };
+
   const [openSection, setOpenSection] = useState<string | null>(null);
-  const [headerHeight, setHeaderHeight] = useState(60);
   const headerBarRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
 
@@ -85,19 +100,6 @@ export const MobileNavbar = () => {
   const visibleLinks = isHomePage
     ? mobileNavLinks.filter((link) => link.label !== "Home")
     : mobileNavLinks;
-
-  // Measure header bar height so dropdown anchors perfectly below it
-  useEffect(() => {
-    const measure = () => {
-      if (headerBarRef.current) {
-        const rect = headerBarRef.current.getBoundingClientRect();
-        setHeaderHeight(rect.bottom);
-      }
-    };
-    measure();
-    window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
-  }, []);
 
   // Lock body scroll when menu is open — Lenis-compatible approach
   useEffect(() => {
@@ -143,34 +145,21 @@ export const MobileNavbar = () => {
         />
       </div>
 
-      {/* Mobile Menu Dropdown — fixed to viewport, starts exactly where header ends */}
-      {isOpen && (
-        <div
-          className="fixed left-0 right-0 bottom-0 z-[999] bg-black/20 backdrop-blur-sm"
-          style={{ top: `${headerHeight}px` }}
-          onClick={closeMenu}
-        />
-      )}
+      {/* Mobile Menu Dropdown — aligned absolute under the header pill */}
       <div
-        className="fixed left-0 right-0 z-[9999] overflow-hidden"
+        className="absolute left-[-1px] right-[-1px] z-[9999] overflow-hidden bg-white border-x border-b border-zinc-200/70 rounded-b-[30px] shadow-[rgba(0,0,0,0.12)_0px_20px_60px_0px] flex flex-col"
         style={{
-          top: `${headerHeight}px`,
-          maxHeight: isOpen ? `calc(100dvh - ${headerHeight}px)` : "0px",
-          transition: "max-height 0.45s cubic-bezier(0.4,0,0.2,1)",
+          top: "100%",
+          maxHeight: isOpen ? "calc(100dvh - 100px)" : "0px",
+          opacity: isOpen ? 1 : 0,
+          transform: isOpen ? "translateY(0)" : "translateY(-8px)",
+          transition: "max-height 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease, transform 0.3s ease",
           pointerEvents: isOpen ? "auto" : "none",
         }}
+        onClick={(e) => e.stopPropagation()}
       >
-        <div
-          className="mx-3 bg-white border border-zinc-200/80 rounded-b-[24px] shadow-[0_20px_60px_rgba(0,0,0,0.14)] overflow-y-auto overflow-x-hidden"
-          style={{
-            maxHeight: `calc(100dvh - ${headerHeight + 12}px)`,
-            opacity: isOpen ? 1 : 0,
-            transform: isOpen ? "translateY(0)" : "translateY(-8px)",
-            transition: "opacity 0.35s ease, transform 0.35s ease",
-          }}
-          onClick={(e) => e.stopPropagation()}
-        >
-          <nav className="flex flex-col px-4 pt-4 pb-6 gap-y-1">
+        <div className="overflow-y-auto overflow-x-hidden px-4 pt-4 pb-6 flex flex-col gap-y-1">
+          <nav className="flex flex-col gap-y-1">
 
             {/* Navigation Links */}
             <div className="flex flex-col gap-y-0.5">
