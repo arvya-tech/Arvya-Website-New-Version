@@ -294,7 +294,7 @@ export const SpecializationsSection = () => {
           </div>
 
           {/* RIGHT/BOTTOM — text panel */}
-          <div className="relative w-full md:w-[50%] h-[240px] md:h-[360px] flex items-center">
+          <div className="relative w-full md:w-[50%] h-[290px] sm:h-[240px] md:h-[360px] flex items-center">
             {specializations.map((item, i) => (
               <div
                 key={i}

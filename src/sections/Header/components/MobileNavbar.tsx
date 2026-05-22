@@ -241,7 +241,7 @@ export const MobileNavbar = ({
               <Link
                 to="/contact"
                 onClick={closeMenu}
-                className="block text-zinc-800 font-[600] text-[16px] bg-zinc-100 text-center px-6 py-3.5 rounded-full hover:bg-zinc-200 active:scale-95 transition-all duration-200"
+                className="btn-glass-morphic block text-center px-6 py-3.5 rounded-full font-[600] text-[16px]"
               >
                 Contact Us
               </Link>

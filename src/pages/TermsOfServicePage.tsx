@@ -88,7 +88,7 @@ export const TermsOfServicePage = () => {
 
           <section>
             <h2>12. Governing Law</h2>
-            <p>These Terms are governed by and construed in accordance with the laws of India. Any disputes arising out of these Terms shall be subject to the exclusive jurisdiction of the courts in Hyderabad, Telangana, India.</p>
+            <p>These Terms are governed by and construed in accordance with the laws of India. Any disputes arising out of these Terms shall be subject to the exclusive jurisdiction of the courts in Amaravati, Andhra Pradesh, India.</p>
           </section>
 
           <section>

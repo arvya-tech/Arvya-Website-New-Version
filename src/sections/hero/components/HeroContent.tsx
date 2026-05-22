@@ -1,4 +1,7 @@
 
+import { Link } from "react-router-dom";
+import { ArrowUpRight } from "lucide-react";
+
 export const HeroContent = () => {
   return (
     <div className="items-center box-border caret-transparent flex basis-auto grow-0 justify-center max-w-[2000px] min-h-[auto] min-w-[auto] outline-[3.75px] w-[85%] mx-auto pb-0 md:basis-[0%] md:grow md:w-9/12 -mt-14 md:-mt-20">
