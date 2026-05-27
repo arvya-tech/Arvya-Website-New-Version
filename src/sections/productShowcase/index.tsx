@@ -47,7 +47,7 @@ const products: ProductItem[] = [
     title: "Database Analytics",
     description:
       "Ask complex questions about your enterprise data in plain language. Our agents write the queries, analyse the results, and surface actionable insights — no SQL required.",
-    image: `${IMG}/Database%20analytics.png`,
+    image: `${IMG}/Database%20Analytics%20dashboord.png`,
     exploreLink: "/products/analytics",
   },
   {
@@ -57,7 +57,7 @@ const products: ProductItem[] = [
     title: "Advanced AI Chat",
     description:
       "Domain-aware AI deployed on your own knowledge base and infrastructure. On-premise, secure, and tuned to your organisation's language and processes.",
-    image: `${IMG}/chatbot.png`,
+    image: `${IMG}/Advanced%20Ai%20Chat%20Bot.png`,
     exploreLink: "/products/ai-chat",
   },
   {
@@ -67,7 +67,7 @@ const products: ProductItem[] = [
     title: "Agentic RAG",
     description:
       "Next-generation retrieval that doesn't just find information — it reasons through it, connects disparate data points, and executes the next steps autonomously.",
-    image: `${IMG}/rag%20.png`,
+    image: `${IMG}/Agentic%20RAG.png`,
     exploreLink: "/products/agentic-rag",
   },
 ];
